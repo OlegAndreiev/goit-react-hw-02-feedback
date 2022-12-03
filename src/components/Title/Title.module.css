@@ -1,9 +1,0 @@
-.button {
-  background-color: #fff;
-  outline: none;
-  border: 1px solid grey;
-  border-radius: 5px;
-}
-.button:not(:last-child) {
-  margin-right: 10px;
-}

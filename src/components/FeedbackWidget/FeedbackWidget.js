@@ -1,6 +1,9 @@
 // import { App } from 'components/App';
 import React from 'react';
-import css from './FeedbackWidget.module.css';
+// import css from './FeedbackWidget.module.css';
+import Statistics from './Statistics';
+import FeedbackOptions from './FeedbackOptions';
+import Section from './Section';
 
 class FeedbackWidget extends React.Component {
   static defaultProps = {
@@ -14,10 +17,6 @@ class FeedbackWidget extends React.Component {
     good: 0,
     neutral: 0,
     bad: 0,
-  };
-
-  countTotalFeedback = () => {
-    console.log(this.state);
   };
 
   incrementBtnGood = () => {
@@ -45,41 +44,34 @@ class FeedbackWidget extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <section className={css.title}>
-          <h2>Please leave feedback</h2>
-          <button
-            type="button"
-            className={css.button}
-            onClick={this.incrementBtnGood}
-          >
-            Good
-          </button>
-          <button
-            type="button"
-            className={css.button}
-            onClick={this.incrementBtnNeutral}
-          >
-            Neutral
-          </button>
-          <button
-            type="button"
-            className={css.button}
-            onClick={this.incrementBtnBad}
-          >
-            Bad
-          </button>
-        </section>
-        <section className={css.statistics}>
-          <h2>Statitstics</h2>
+    const countTotalFeedback =
+      this.props.totalFeedback +
+      this.state.good +
+      this.state.neutral +
+      this.state.bad;
 
-          <p>Good: {this.state.good}</p>
-          <p>Neutral: {this.state.neutral}</p>
-          <p>Bad: {this.state.bad}</p>
-          <p>Total: {this.props.totalFeedback}</p>
-        </section>
-      </div>
+    const countPositiveFeedbackPercentage = Math.round(
+      (this.state.good / countTotalFeedback) * 100
+    );
+    return (
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            incrementBtnGood={this.incrementBtnGood}
+            incrementBtnNeutral={this.incrementBtnNeutral}
+            incrementBtnBad={this.incrementBtnBad}
+          />
+        </Section>
+        <Section title="Statitstics">
+          <Statistics
+            good={this.state.good}
+            neutral={this.state.neutral}
+            bad={this.state.bad}
+            total={countTotalFeedback}
+            positivePercentage={countPositiveFeedbackPercentage}
+          />
+        </Section>
+      </>
     );
   }
 }

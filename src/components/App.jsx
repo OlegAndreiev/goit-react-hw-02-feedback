@@ -4,8 +4,7 @@ import FeedbackWidget from './FeedbackWidget';
 
 const App = () => (
   <>
-    {/* <Title /> */}
-    <FeedbackWidget initialValue={100} />
+    <FeedbackWidget />
   </>
 );
 
