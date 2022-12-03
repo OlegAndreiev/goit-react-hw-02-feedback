@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import css from './FeedbackWidget.module.css';
 const FeedbackOptions = ({
   incrementBtnGood,
@@ -19,3 +20,9 @@ const FeedbackOptions = ({
 );
 
 export default FeedbackOptions;
+
+FeedbackOptions.propTypes = {
+  incrementBtnGood: PropTypes.func.isRequired,
+  incrementBtnNeutral: PropTypes.func.isRequired,
+  incrementBtnBad: PropTypes.func.isRequired,
+};

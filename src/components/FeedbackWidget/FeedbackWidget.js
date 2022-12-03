@@ -1,9 +1,8 @@
-// import { App } from 'components/App';
 import React from 'react';
-// import css from './FeedbackWidget.module.css';
 import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions';
 import Section from './Section';
+import Notification from './Notification';
 
 class FeedbackWidget extends React.Component {
   static defaultProps = {
@@ -71,6 +70,10 @@ class FeedbackWidget extends React.Component {
             positivePercentage={countPositiveFeedbackPercentage}
           />
         </Section>
+        <Notification
+          message="There is no feedback"
+          total={countTotalFeedback}
+        />
       </>
     );
   }
