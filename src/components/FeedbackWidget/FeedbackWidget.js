@@ -43,14 +43,11 @@ class FeedbackWidget extends React.Component {
   };
 
   render() {
-    const countTotalFeedback =
-      this.props.totalFeedback +
-      this.state.good +
-      this.state.neutral +
-      this.state.bad;
+    const { good, neutral, bad } = this.state;
+    const countTotalFeedback = this.props.totalFeedback + good + neutral + bad;
 
     const countPositiveFeedbackPercentage = Math.round(
-      (this.state.good / countTotalFeedback) * 100
+      (good / countTotalFeedback) * 100
     );
     return (
       <>
@@ -63,9 +60,9 @@ class FeedbackWidget extends React.Component {
         </Section>
         <Section title="Statitstics">
           <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
+            good={good}
+            neutral={neutral}
+            bad={bad}
             total={countTotalFeedback}
             positivePercentage={countPositiveFeedbackPercentage}
           />
